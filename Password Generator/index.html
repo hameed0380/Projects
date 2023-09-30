@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title>Random Password Generator - Easy Tutorials</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2299.7">
+  <style type="text/css">
+  </style>
+</head>
+
+<body>
+<div class="container"> 
+  <h1>Generate a <br><span>Random Password</span></h1>
+  <div class="display">
+    <input type="text" id="password" placeholder="password">
+    <img src="images/copy.png" onclick="copyPassword()">
+  </div>
+  <button onclick="createPassword()"><img src="images/generate.png">Generate Password</button>
+</div>
+
+<script>
+  const password = document.getElementById("password");
+  const length = 12;
+  const passwordBox = document.getElementById("password");
+  const upperCase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  const lowerCase = "abcdefghijklmnopqrstuvwxyz";
+  const numbers = "0123456789";
+  const symbols = "!@#$%^&*()_+-~[]{<>/?}="; 
+
+  const allChars = upperCase + lowerCase + numbers + symbols;
+
+  function createPassword() {
+    let password = "";
+    password += upperCase[Math.floor(Math.random() * upperCase.length)];
+    password += lowerCase[Math.floor(Math.random() * lowerCase.length)];
+    password += numbers[Math.floor(Math.random() * numbers.length)];
+    password += symbols[Math.floor(Math.random() * symbols.length)];
+
+    while(length > password.length) {
+      password += allChars[Math.floor(Math.random()  * allChars.length)];
+    }
+    passwordBox.value = password;
+  }
+
+  function copyPassword() {
+    passwordBox.select();
+    document.execCommand("copy");
+    alert("Password copied to clipboard");
+  }
+
+</script>
+</body>
+</html>
